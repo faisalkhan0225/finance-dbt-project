@@ -1,0 +1,31 @@
+# models/marts/schema.yml
+
+version: 2
+
+models:
+  - name: fct_transactions
+    description: "Fact table for all financial transactions"
+    columns:
+      - name: transaction_id
+        tests:
+          - unique
+          - not_null
+      - name: amount
+        tests:
+          - not_null
+      - name: status
+        tests:
+          - accepted_values:
+              values: ['COMPLETED', 'PENDING', 'FAILED']
+      - name: account_id
+        tests:
+          - relationships:
+              to: ref('dim_accounts')
+              field: account_id
+
+  - name: dim_accounts
+    description: "SCD Type 2 dimension for accounts"
+    columns:
+      - name: account_id
+        tests:
+          - not_null
