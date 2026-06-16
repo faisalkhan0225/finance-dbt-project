@@ -1,0 +1,18 @@
+# models/staging/schema.yml
+
+version: 2
+
+sources:
+  - name: raw
+    database: FINANCE_DB
+    schema: RAW
+    tables:
+      - name: accounts
+        description: "Raw accounts data"
+        
+
+      - name: transactions
+        description: "Raw transactions data"
+
+      - name: budget
+        description: "Raw budget data"
