@@ -7,25 +7,27 @@ models:
     description: "Fact table for all financial transactions"
     columns:
       - name: transaction_id
-        tests:
+        data_tests:
           - unique
           - not_null
       - name: amount
-        tests:
+        data_tests:
           - not_null
       - name: status
-        tests:
+        data_tests:
           - accepted_values:
-              values: ['COMPLETED', 'PENDING', 'FAILED']
+              arguments: 
+                values: ['COMPLETED', 'PENDING', 'FAILED']
       - name: account_id
-        tests:
+        data_tests:
           - relationships:
-              to: ref('dim_accounts')
-              field: account_id
+              arguments:
+                to: ref('dim_accounts')
+                field: account_id
 
   - name: dim_accounts
     description: "SCD Type 2 dimension for accounts"
     columns:
       - name: account_id
-        tests:
+        data_tests:
           - not_null
