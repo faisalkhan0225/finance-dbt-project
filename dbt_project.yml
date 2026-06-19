@@ -9,8 +9,12 @@ models:
     staging:
       +materialized: view
       +schema: staging
+      +tags: ['staging']
     intermediate:
-      +materialized: ephemeral
+      +materialized: view
+      +schema: intermediate
+      +tags: ['intermediate']
     marts:
       +materialized: table
       +schema: marts
+      +tags: ['marts']

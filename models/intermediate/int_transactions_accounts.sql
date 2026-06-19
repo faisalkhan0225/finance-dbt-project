@@ -4,7 +4,7 @@ WITH transactions AS (
     SELECT * FROM {{ ref('stg_transactions') }}
 ),
 
-accounts AS (
+accounts AS (  
     SELECT * FROM {{ ref('stg_accounts') }}
 ),
 

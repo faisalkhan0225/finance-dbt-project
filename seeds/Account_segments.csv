@@ -1,0 +1,6 @@
+account_type,segment,risk_category,review_frequency
+Corporate,Large Enterprise,Low,Quarterly
+Banking,Financial Institution,Medium,Monthly
+SME,Small Business,High,Weekly
+Retail,Individual,Medium,Monthly
+Government,Public Sector,Low,Annually

@@ -1,0 +1,6 @@
+currency_code,currency_name,exchange_rate_to_inr,last_updated
+INR,Indian Rupee,1.00,2026-01-01
+USD,US Dollar,80,2026-01-01
+EUR,Euro,90.25,2026-01-01
+GBP,British Pound,105.75,2026-01-01
+AED,UAE Dirham,22.75,2026-01-01

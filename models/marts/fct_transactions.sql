@@ -19,14 +19,7 @@ WITH base AS (
         transaction_type,
         amount,
         currency,
-        status,
-
-        -- categorize transaction size
-        CASE
-            WHEN amount >= 1000000  THEN 'Large'
-            WHEN amount >= 500000   THEN 'Medium'
-            ELSE                         'Small'
-        END                             AS transaction_size,
+        status,  
 
         -- flag completed transactions only
         CASE
@@ -37,9 +30,26 @@ WITH base AS (
         transaction_date,
         created_at
     FROM {{ ref('int_transactions_accounts') }}
+),
+currency as (
+    Select * from {{ ref('Currency_rates') }}
 )
 
-SELECT * FROM base
+select bc.*,
+-- categorize transaction size
+        CASE
+            WHEN bc.AMOUNT_INR >= 1000000  THEN 'Large'
+            WHEN bc.AMOUNT_INR >= 500000   THEN 'Medium'
+            ELSE                         'Small'
+        END                             AS transaction_size
+ from (
+SELECT 
+b.*,
+b.amount * c.exchange_rate_to_inr as AMOUNT_INR,
+c.currency_name 
+FROM base b
+left join currency c 
+     on b.currency = c.currency_code ) bc
 
 {% if is_incremental() %}
 
